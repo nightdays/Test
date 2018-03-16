@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/nightdays/Test/issues"
   },
-  "homepage": "https://github.com/nightdays/Test#readme"
+  "homepage": "https://github.com/nightdays/Test#readme",
+  "dependencies": {
+    "mysql": "^2.15.0"
+  }
 }
