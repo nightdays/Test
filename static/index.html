@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
 </head>
+
 <body>
-    Hellox
+    <div id="app">
+        <table>
+            <thead>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>电话</th>
+            </thead>
+            <tbody>
+                <tr v-for="item in list">
+                    <td>{{item.name}}</td>
+                    <td>{{item.age}}</td>
+                    <td>{{item.phone}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                list: [
+                    {
+                        name: '张三',
+                        age : '28',
+                        phone : '1123123123123'
+                    },
+                    {
+                        name: '李四',
+                        age : '31',
+                        phone : '12222244442'
+                    }
+                ]
+            }
+        });
+    </script>
 </body>
+
 </html>
