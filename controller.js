@@ -25,18 +25,20 @@ module.exports = {
         });
     },
     insertUser : function(req, res, next) {
+        console.log(req.body);
         testService.insertUser(req.body,function(result){
-            res.send(result);
+            res.send({success: true});
         });
     },
     updateUser : function(req, res, next) {
+        console.log(req.body);
         testService.updateUser(req.body,function(result){
-            res.send(result);
+            res.send({success: true});
         });
     },
     deleteUser : function(req, res, next) {
         testService.deleteUser(req.body,function(result){
-            res.send(result);
+            res.send({success: true});
         });
     },
     test: function(req,res,next) {

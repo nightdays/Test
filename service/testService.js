@@ -59,6 +59,10 @@ class TestService {
     }
 
     updateUser(user , cb) {
+        if(!user.name || !user.age || !user.phone) {
+            cb("数据库操作失败");
+            return;
+        }
         let sql = `
             update test set name='${user.name}',age='${user.age}',phone='${user.phone}' where id = '${user.id}'
         `;
@@ -73,7 +77,7 @@ class TestService {
 
     deleteUser(user , cb) {
         let sql = `
-            delete from  test where id = ${user.id}
+            delete from  test where id = '${user.id}'
         `;
         pool.getConnection(function (err, connection) {
             connection.query(sql, function (error, results, fields) {
