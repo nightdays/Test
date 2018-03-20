@@ -7,9 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+
+    <script>
+
+        console.log(123);
+        document.documentElement.style.fontSize = window.innerWidth / 750 * 100 + "px";
+
+    </script>
+
+
 </head>
 
 <body>
+
+
+    <div >
+        <div style="font-size: 300em">
+            北京市朝阳区博大路自主城一号楼十二栋大望路北十五号楼斜对面 (我们是 15px )
+        </div>
+    </div>
+
+
     <div id="app">
         <table>
             <thead>
@@ -35,7 +53,7 @@
 
 
     <script>
-        let url = "http://www.nightdays.net/test"
+        let url = "https://www.nightdays.net/test"
         // let url = "http://localhost/test"
 
         new Vue({
