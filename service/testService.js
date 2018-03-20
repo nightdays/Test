@@ -26,7 +26,6 @@ class TestService {
     listUser(query , cb) {
         pool.getConnection(function (err, connection) {
             let sql = "select * from test";
-            console.log(query.keywords);
             if(query.keywords) {
                 sql += ` where name like '%${query.keywords}%' or phone like '%${query.keywords}%' `
             }
