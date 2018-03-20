@@ -23,9 +23,15 @@ class TestService {
         });
     }
 
-    listUser(cb) {
+    listUser(query , cb) {
         pool.getConnection(function (err, connection) {
-            connection.query("select * from test", function (error, results, fields) {
+            let sql = "select * from test";
+            console.log(query.keywords);
+            if(query.keywords) {
+                sql += ` where name like '%${query.keywords}%' or phone like '%${query.keywords}%' `
+            }
+
+            connection.query(sql, function (error, results, fields) {
                 connection.release();
                 cb(results);
                 if (error) throw error;

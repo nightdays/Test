@@ -20,12 +20,11 @@ module.exports = {
         });
     },
     listUser : function(req, res, next) {
-        testService.listUser(function(result){
+        testService.listUser(req.body,function(result){
             res.send(result);
         });
     },
     insertUser : function(req, res, next) {
-        console.log(req.body);
         testService.insertUser(req.body,function(result){
             res.send(result);
         });
