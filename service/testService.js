@@ -60,7 +60,7 @@ class TestService {
 
     updateUser(user , cb) {
         let sql = `
-            update test set name='${user.name}',age='${user.age}',phone='${user.phone}' where id = ${user.id}
+            update test set name='${user.name}',age='${user.age}',phone='${user.phone}' where id = '${user.id}'
         `;
         pool.getConnection(function (err, connection) {
             connection.query(sql, function (error, results, fields) {
