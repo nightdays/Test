@@ -34,6 +34,12 @@ class TestService {
     }
 
     insertUser(user , cb) {
+        if(!user.name || !user.age || !user.phone) {
+            cb("数据库操作失败");
+            return;
+        }
+
+
         let sql = `
             insert into test(name,age,phone) values ('${user.name}','${user.age}','${user.phone}')
         `;

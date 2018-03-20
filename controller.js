@@ -25,6 +25,7 @@ module.exports = {
         });
     },
     insertUser : function(req, res, next) {
+        console.log(req.body);
         testService.insertUser(req.body,function(result){
             res.send(result);
         });

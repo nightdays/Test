@@ -25,25 +25,44 @@
                 </tr>
             </tbody>
         </table>
+
+        <button @click="add">新增</button>
     </div>
 
 
     <script>
+        let url = "http://localhost/test"
+
         new Vue({
             el: '#app',
             data: {
-                list: [
-                    {
-                        name: '张三',
-                        age : '28',
-                        phone : '1123123123123'
-                    },
-                    {
-                        name: '李四',
-                        age : '31',
-                        phone : '12222244442'
+                list: []
+            },
+            mounted() {
+                this.getList();
+            },
+            methods: {
+
+                getList() {
+                    let xhr = new XMLHttpRequest();
+                    xhr.open("post" , url + "/listUser");
+                    xhr.onload = function(result) {
+
+                        console.log(result);
                     }
-                ]
+                    xhr.send();
+                },
+
+                add() {
+                    let xhr = new XMLHttpRequest();
+                    xhr.open("post" , url + "/insertUser");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.onload = function(result) {
+                    }
+                    xhr.send(JSON.stringify({name:'吴敏'}));
+                }
+
+
             }
         });
     </script>
