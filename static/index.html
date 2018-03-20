@@ -59,8 +59,7 @@
                     let xhr = new XMLHttpRequest();
                     xhr.open("post" , url + "/listUser");
                     xhr.onload = function(result) {
-
-                        console.log(result);
+                        this.list = result;
                     }
                     xhr.send();
                 },
