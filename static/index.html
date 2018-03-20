@@ -51,7 +51,7 @@
                     xhr.open("post" , url + "/listUser");
                     xhr.onload = function(result) {
                         this.list = result;
-                    }
+                    }.bind(this);
                     xhr.send();
                 },
 
