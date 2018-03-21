@@ -9,15 +9,40 @@
     <script>
         document.documentElement.style.fontSize = window.innerWidth / 750 * 100 + "px";
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
 </head>
 
 <body style="font-size: .3rem">
 
-    <div>
-        asdf
+    <div id="app">
+        <button @click="signUp">注册</button>
     </div>
 
+    <script>
+        let url = "http://localhost/healthService"
+        new Vue({
+            el: "#app",
+            data : {
 
+            },
+            methods: {
+                signUp() {
+                    let item = {
+                        name : '吴敏',
+                        age : '28',
+                        gender : 1,
+                        phone : 111111111
+                    }
+                    let xhr = new XMLHttpRequest();
+                    xhr.open("post" , url + "/signUp");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.onload = function(result) {
+                    }
+                    xhr.send(JSON.stringify(item));
+                }
+            }
+        })
+    </script>
 </body>
 
 </html>

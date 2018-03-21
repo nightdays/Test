@@ -8,41 +8,44 @@ module.exports = {
         res.send("helloworld");
     },
 
-    getTables: function(req, res, next) {
-        testService.getTables(function(result) {
+    createTable : function(req, res, next) {
+        healthService.createTable(function(result) {
             res.send(result);
         });
     },
 
-    createTable : function(req, res, next) {
-        testService.createTable(function(result) {
-            res.send(result);
+    signUp : function(req, res, next) {
+        healthService.insertUser(req.body,function(result) {
+            res.send({success: true});
         });
     },
+
+    getCaptionCode : function(req, res, next) {
+        res.send({success: true});
+    },
+
     listUser : function(req, res, next) {
-        testService.listUser(req.body,function(result){
+        healthService.listUser(req.body,function(result){
             res.send(result);
         });
     },
     insertUser : function(req, res, next) {
         console.log(req.body);
-        testService.insertUser(req.body,function(result){
+        healthService.insertUser(req.body,function(result){
             res.send({success: true});
         });
     },
     updateUser : function(req, res, next) {
         console.log(req.body);
-        testService.updateUser(req.body,function(result){
+        healthService.updateUser(req.body,function(result){
             res.send({success: true});
         });
     },
     deleteUser : function(req, res, next) {
-        testService.deleteUser(req.body,function(result){
+        healthService.deleteUser(req.body,function(result){
             res.send({success: true});
         });
     },
-    test: function(req,res,next) {
-        testService.test();
-        res.send("test");
-    }
+
+    
 }

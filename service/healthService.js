@@ -45,7 +45,7 @@ class HealthService {
 
 
         let sql = `
-            insert into test(name,age,phone) values ('${user.name}','${user.age}','${user.phone}')
+            insert into user(name,gender,age,phone) values ('${user.name}','${user.gender}','${user.age}','${user.phone}')
         `;
 
         pool.getConnection(function (err, connection) {
@@ -88,15 +88,14 @@ class HealthService {
     }
 
 
-
+//  id bigint unsigned primary key auto_increment,
+// name varchar(10),
     createTable(cb) {
         let sql = `
-        create table user(
-           id bigint unsigned primary key auto_increment,
-           name varchar(10),
-           gender tinyint(1),
-           age varchar(10),
-           phone varchar(11)
+        create table user_health_product(
+            user_id bigint,
+            product_id bigint,
+            buyDate varchar(10)
         )
        `;
 
