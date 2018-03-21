@@ -1,7 +1,7 @@
 
-delete require.cache[require.resolve("./service/healthService")];
-let HealthService = require("./service/healthService");
-let healthService = new HealthService();
+delete require.cache[require.resolve("./service/testService")];
+let TestService = require("./service/testService");
+let testService = new TestService();
 
 module.exports = {
     helloworld : function(req,res,next) {
