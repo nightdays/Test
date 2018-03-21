@@ -47,5 +47,18 @@ module.exports = {
         });
     },
 
-    
+    listHealthProduct:  function(req, res, next) {
+        healthService.listHealthProduct(req.body,function(result){
+            res.send({success: true});
+        });
+    },
+
+
+    userInfo : function(req, res, next ) {
+        healthService.userInfo(req.body,function(result) {
+            
+        });
+    }
+
+
 }

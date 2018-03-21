@@ -88,6 +88,16 @@ class HealthService {
     }
 
 
+    userInfo(user , cb) {
+        let sql = `
+            select 
+        `
+    }
+
+
+
+
+
 //  id bigint unsigned primary key auto_increment,
 // name varchar(10),
     createTable(cb) {
