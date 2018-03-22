@@ -54,20 +54,20 @@ module.exports = {
     },
 
     getHealthProduct : function(req, res, next) {
-        healthService.getHealthProduct(req.query,function(result){
+        healthService.getHealthProduct(req.body,function(result){
             res.send(result);
         });
     },
 
 
     userInfo : function(req, res, next ) {
-        healthService.userInfo(req.query,function(result) {
+        healthService.userInfo(req.body,function(result) {
             res.send(result);
         });
     },
 
     buyHealthProduct : function(req,res,next) {
-        healthService.buyHealthProduct(req.query,function(result) {
+        healthService.buyHealthProduct(req.body,function(result) {
             res.send(result);
         });
     }
