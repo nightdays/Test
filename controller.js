@@ -61,8 +61,14 @@ module.exports = {
 
 
     userInfo : function(req, res, next ) {
-        healthService.userInfo(req.body,function(result) {
-            
+        healthService.userInfo(req.query,function(result) {
+            res.send(result);
+        });
+    },
+
+    buyHealthProduct : function(req,res,next) {
+        healthService.buyHealthProduct(req.query,function(result) {
+            res.send(result);
         });
     }
 
