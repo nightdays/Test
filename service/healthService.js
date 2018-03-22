@@ -95,6 +95,41 @@ class HealthService {
     }
 
 
+    listHealthProduct(product, cb) {
+        let sql = `
+        select name , price , description , expiryDate from health_product
+        `;
+        pool.getConnection(function (err, connection) {
+            connection.query(sql, function (error, results, fields) {
+                connection.release();
+                cb(results);
+                if (error) throw error;
+            });
+        });
+    }
+
+    getHealthProduct(product,cb) {
+        let sql = `
+                select h.id ,  h.name , h.price , h.description , h.expiryDate 
+            from 
+                health_product h,
+                product_fee_item hf,
+                fee_item f
+            where
+                h.id = hf.product_id and
+                f.id = hf.fee_item_id and
+                h.id = ${product.id}
+        `;
+        pool.getConnection(function (err, connection) {
+            connection.query(sql, function (error, results, fields) {
+                connection.release();
+                cb(results);
+                if (error) throw error;
+            });
+        });
+    }
+
+
 
 
 

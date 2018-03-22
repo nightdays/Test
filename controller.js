@@ -49,7 +49,13 @@ module.exports = {
 
     listHealthProduct:  function(req, res, next) {
         healthService.listHealthProduct(req.body,function(result){
-            res.send({success: true});
+            res.send(result);
+        });
+    },
+
+    getHealthProduct : function(req, res, next) {
+        healthService.getHealthProduct(req.query,function(result){
+            res.send(result);
         });
     },
 
