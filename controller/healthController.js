@@ -74,9 +74,16 @@ module.exports = {
 
 
     wechat: function(req,res,next) {
-        console.log(req);
         res.send(req.query.echostr);
+    },
+
+
+    login : function(req,res,next){
+        console.log(req.query);
+        res.redirect("http://www.nightdays.net/healthService")
     }
+
+
 
 
 }
