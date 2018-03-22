@@ -74,6 +74,7 @@ module.exports = {
 
 
     wechat: function(req,res,next) {
+        console.log(req);
         res.send(req.query.echostr);
     }
 
