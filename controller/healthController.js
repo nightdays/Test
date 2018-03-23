@@ -80,7 +80,9 @@ module.exports = {
 
 
     login : function(req,res,next){
-        console.log(req.query);
+        console.log(req.query.open_id);
+
+        
         res.redirect("http://www.nightdays.net/healthService")
     }
 
