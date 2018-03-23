@@ -67,6 +67,9 @@ module.exports = {
     },
 
     buyHealthProduct : function(req,res,next) {
+        if(req.body.product_id == undefined) {
+            res.send("请求参数为空 ，请检查传的参数");
+        }
         healthService.buyHealthProduct(req.body,function(result) {
             res.send(result);
         });
