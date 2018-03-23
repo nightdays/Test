@@ -199,6 +199,7 @@ class HealthService {
 
     buyHealthProduct(param,cb) {
         let now = util.getNow();
+        console.log(param.product_id)
         let sql = `
             insert into user_health_product values (1,${param.product_id},'${now}');
         `;
