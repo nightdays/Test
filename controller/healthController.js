@@ -82,6 +82,11 @@ module.exports = {
     login : function(req,res,next){
         console.log(req.query.open_id);
 
+        let productStr = JSON.stringify(product);
+        localStorage.setItem("product" , productStr);
+
+
+        let product = localStorage.getItem("product");
         
         res.redirect("http://www.nightdays.net/healthService")
     }
