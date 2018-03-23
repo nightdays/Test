@@ -19,7 +19,7 @@
     </div>
 
     <script>
-        let url = "http://localhost/healthService"
+        let url = "http://www.nightdays.net/healthService"
         new Vue({
             el: "#app",
             data : {
@@ -34,11 +34,11 @@
                         phone : 111111111
                     }
                     let xhr = new XMLHttpRequest();
-                    xhr.open("post" , url + "/signUp");
+                    xhr.open("post" , url + "/getHealthProduct");
                     xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.onload = function(result) {
                     }
-                    xhr.send(JSON.stringify(item));
+                    xhr.send(JSON.stringify({id: '1'}));
                 }
             }
         })
