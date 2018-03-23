@@ -164,6 +164,7 @@ class HealthService {
     getHealthProduct(product,cb) {
         if(product.id == undefined) {
             cb("参数为空");
+            return;
         }
         let productSql = `
                 select h.id ,  h.name , h.price , h.description , h.expiryDate 
