@@ -45,6 +45,17 @@
             </tbody>
         </table>
 
+        <div>
+            姓名: {{user.name}}
+            年龄: {{user.age}}
+            性别: {{usre.gender}}
+
+            用户购买的记录
+            <div v-for="item of user.productList">
+                
+            </div>
+        </div>
+
         <button @click="add">新增</button>
         <input v-model="keywords" />
         <button @click="search">搜索</button>
@@ -101,6 +112,14 @@
                     xhr.onload = function(result) {
                     }
                     xhr.send(JSON.stringify(item));
+                },
+
+                userInfo() {
+                    let x = function (result) {
+
+                        this.user = result;
+
+                    }
                 }
 
             }

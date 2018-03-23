@@ -94,7 +94,7 @@ class HealthService {
 
     userInfo(obj,cb) {
         let user = {id : 1};
-        let userSql = `select id,name,age,gender from user where id = '${user.id}' `;
+        let userSql = `select id,name,age,gender,phone from user where id = '${user.id}' `;
         let userProductSql = `
             select 
                 h.id, h.name, h.price, h.description, h.expiryDate ,uh.buyDate
