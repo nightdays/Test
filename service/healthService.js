@@ -200,7 +200,7 @@ class HealthService {
     buyHealthProduct(param,cb) {
         let now = util.getNow();
         let sql = `
-            insert into user_health_product values ('1','${param.product_id}','${now}');
+            insert into user_health_product values (1,${param.product_id},'${now}');
         `;
         pool.getConnection(function (err, connection) {
             connection.query(sql, function (error, productInfo, fields) {
