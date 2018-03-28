@@ -3,61 +3,75 @@ delete require.cache[require.resolve("../service/healthService")];
 let HealthService = require("../service/healthService");
 let healthService = new HealthService();
 
-module.exports = {
-    helloworld : function(req,res,next) {
-        res.send("helloworld");
-    },
+function req(cb) {
+    return function(req,res,next) {
+        try{
+            cb(req,res,next);
+        }catch(error) {
+            res.send({
+                data : null,
+                errmsg : error,
+                code : 500
+            });
+        }
+    }
+}
 
-    createTable : function(req, res, next) {
+module.exports = {
+    helloworld : req(function(req,res,next) {
+        res.send("helloworld");
+    }),
+
+    createTable : req(function(req, res, next) {
         healthService.createTable(function(result) {
             res.send(result);
         });
-    },
+    }),
 
-    signUp : function(req, res, next) {
+    signUp : req(function(req, res, next) {
         healthService.insertUser(req.body,function(result) {
             res.send({success: true});
         });
-    },
+    }),
 
-    getCaptionCode : function(req, res, next) {
+    getCaptionCode : req(function(req, res, next) {
         res.send({success: true});
-    },
+    }),
 
-    listUser : function(req, res, next) {
+    listUser : req(function(req, res, next) {
         healthService.listUser(req.body,function(result){
             res.send(result);
         });
-    },
-    insertUser : function(req, res, next) {
+    }),
+    insertUser : req(function(req, res, next) {
         console.log(req.body);
         healthService.insertUser(req.body,function(result){
             res.send({success: true});
         });
-    },
-    updateUser : function(req, res, next) {
+    }),
+    updateUser : req(function(req, res, next) {
         console.log(req.body);
         healthService.updateUser(req.body,function(result){
             res.send({success: true});
         });
-    },
-    deleteUser : function(req, res, next) {
+    }),
+    deleteUser : req(function(req, res, next) {
         healthService.deleteUser(req.body,function(result){
             res.send({success: true});
         });
-    },
+    }),
 
-    listHealthProduct:  function(req, res, next) {
+    listHealthProduct:  req(function(req, res, next) {
         healthService.listHealthProduct(req.body,function(result){
             res.send(result);
         });
-    },
+    }),
 
-    getHealthProduct : function(req, res, next) {
+    getHealthProduct : req(function(req, res, next) {
         healthService.getHealthProduct(req.body,function(result){
             res.send(result);
         });
-    },
+    }),
 
 
     userInfo : function(req, res, next ) {
