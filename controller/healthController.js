@@ -24,18 +24,18 @@ module.exports = {
 
     createTable : req(function(req, res, next) {
         healthService.createTable(function(result) {
-            res.send(result);
+            res.send({code: 0});
         });
     }),
 
     signUp : req(function(req, res, next) {
         healthService.insertUser(req.body,function(result) {
-            res.send({success: true});
+            res.send({code: 0});
         });
     }),
 
     getCaptionCode : req(function(req, res, next) {
-        res.send({success: true});
+        res.send({code: 0});
     }),
 
     listUser : req(function(req, res, next) {
@@ -46,18 +46,18 @@ module.exports = {
     insertUser : req(function(req, res, next) {
         console.log(req.body);
         healthService.insertUser(req.body,function(result){
-            res.send({success: true});
+            res.send({code: 0});
         });
     }),
     updateUser : req(function(req, res, next) {
         console.log(req.body);
         healthService.updateUser(req.body,function(result){
-            res.send({success: true});
+            res.send({code: 0});
         });
     }),
     deleteUser : req(function(req, res, next) {
         healthService.deleteUser(req.body,function(result){
-            res.send({success: true});
+            res.send({code: 0});
         });
     }),
 
