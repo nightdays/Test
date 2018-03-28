@@ -40,7 +40,7 @@ module.exports = {
 
     listUser : req(function(req, res, next) {
         healthService.listUser(req.body,function(result){
-            res.send(result);
+            res.send({code:0 , data: result});
         });
     }),
     insertUser : req(function(req, res, next) {
@@ -63,20 +63,20 @@ module.exports = {
 
     listHealthProduct:  req(function(req, res, next) {
         healthService.listHealthProduct(req.body,function(result){
-            res.send(result);
+            res.send({code:0 , data: result});
         });
     }),
 
     getHealthProduct : req(function(req, res, next) {
         healthService.getHealthProduct(req.body,function(result){
-            res.send(result);
+            res.send({code:0 , data: result});
         });
     }),
 
 
     userInfo : function(req, res, next ) {
         healthService.userInfo(req.body,function(result) {
-            res.send(result);
+            res.send({code:0 , data: result});
         });
     },
 
@@ -85,7 +85,7 @@ module.exports = {
             res.send("请求参数为空 ，请检查传的参数");
         }
         healthService.buyHealthProduct(req.body,function(result) {
-            res.send(result);
+            res.send({code: 0});
         });
     },
 
