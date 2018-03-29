@@ -28,7 +28,7 @@ class HealthService {
 
     listUser(query , cb) {
         pool.getConnection(function (err, connection) {
-            let sql = "select * from test";
+            let sql = "select * from user";
             if(query.keywords) {
                 sql += ` where name like '%${query.keywords}%' or phone like '%${query.keywords}%' `
             }
