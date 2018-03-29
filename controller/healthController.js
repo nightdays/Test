@@ -98,7 +98,7 @@ module.exports = {
 
     addFeeItem : req(function(req, res, next) {
         healthService.addFeeItem(req.body,function(result){
-            res.send({code:0});
+            res.send(result);
         });
     }),
 
