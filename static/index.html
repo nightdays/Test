@@ -19,52 +19,13 @@
 
 <body>
 
-
-    <div >
-        <div style="font-size: .3rem">
-            北京市朝阳区博大路自主城一号楼十二栋大望路北十五号楼斜对面 (我们是 15px )
-        </div>
-    </div>
-
-
     <div id="app">
-        <table>
-            <thead>
-                <th>姓名</th>
-                <th>年龄</th>
-                <th>电话</th>
-            </thead>
-            <tbody>
-                <tr v-for="item in list">
-                    <td>{{item.name}}</td>
-                    <td>{{item.age}}</td>
-                    <td>{{item.phone}}</td>
-                    <td><button @click="edit(item)">编辑</button></td>
-                    <td><button @click="add(item)">新增</button></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div>
-            姓名: {{user.name}}
-            年龄: {{user.age}}
-            性别: {{usre.gender}}
-
-            用户购买的记录
-            <div v-for="item of user.productList">
-                
-            </div>
-        </div>
-
-        <button @click="add">新增</button>
-        <input v-model="keywords" />
-        <button @click="search">搜索</button>
     </div>
 
 
     <script>
-        let url = "https://www.nightdays.net/test"
-        // let url = "http://localhost/test"
+        // let url = "https://www.nightdays.net/test"
+        let url = "http://localhost/healthService"
 
         new Vue({
             el: '#app',
@@ -80,10 +41,11 @@
                 getList() {
                     let xhr = new XMLHttpRequest();
                     xhr.open("post" , url + "/listUser");
+                    xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.onload = function(result) {
                         this.list = JSON.parse(result.currentTarget.responseText);
                     }.bind(this);
-                    xhr.send();
+                    xhr.send(JSON.stringify({start: 1}));
                 },
 
                 add(item) {

@@ -36,11 +36,31 @@ class HealthService {
             if(query.gender) {
                 sql += ` and gender = '${query.gender}'  `;
             }
+            let countSql = sql;
+            if(query.start!=undefined) {
+                let limit = query.limit ? query.limit : 10;
+                let start = (query.start - 1) * limit;
+                sql += ` limit ${start} , ${limit}` ;
+            }
 
-            connection.query(sql, function (error, results, fields) {
-                connection.release();
-                cb(results);
-                if (error) throw error;
+            let resultObject = {};
+            
+            connection.query(countSql, function (error, results, fields) {
+                if (error) {
+                    connection.release();
+                    cb({code: 500 , errmsg : JSON.stringify(error)});
+                }else{
+                    resultObject.total = results.length;
+                    connection.query(sql, function (error, results, fields) {
+                        connection.release();
+                        if (error) {
+                            cb({code: 500 , errmsg : JSON.stringify(error)});
+                        }else{
+                            resultObject.list = results;
+                            cb(resultObject);
+                        }
+                    });
+                }
             });
         });
     }
