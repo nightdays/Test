@@ -90,6 +90,18 @@ module.exports = {
         });
     },
 
+    listFeeItem : req(function(req, res, next) {
+        healthService.listFeeItem(req.body,function(result){
+            res.send({code:0 , data: result});
+        });
+    }),
+
+    addFeeItem : req(function(req, res, next) {
+        healthService.addFeeItem(req.body,function(result){
+            res.send({code:0});
+        });
+    }),
+
 
     wechat: function(req,res,next) {
         console.log(req);

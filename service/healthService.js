@@ -177,10 +177,6 @@ class HealthService {
             if(query.keywords) {
                 sql += ` and name like '%${query.keywords}%' or description like '%${query.keywords}%' `
             }
-
-            if(query.gender) {
-                sql += ` and gender = '${query.gender}'  `;
-            }
             let countSql = sql;
             if(query.start!=undefined) {
                 let limit = query.limit ? query.limit : 10;
@@ -264,7 +260,74 @@ class HealthService {
         });
     }
 
+    
+    listFeeItem(query , cb) {
+        pool.getConnection(function (err, connection) {
+            let sql = "select * from fee_item where 1=1";
+            let countSql = sql;
+            if(query.start!=undefined) {
+                let limit = query.limit ? query.limit : 10;
+                let start = (query.start - 1) * limit;
+                sql += ` limit ${start} , ${limit}` ;
+            }
 
+            let resultObject = {};
+            
+            connection.query(countSql, function (error, results, fields) {
+                if (error) {
+                    connection.release();
+                    cb({code: 500 , errmsg : JSON.stringify(error)});
+                }else{
+                    resultObject.total = results.length;
+                    connection.query(sql, function (error, results, fields) {
+                        connection.release();
+                        if (error) {
+                            cb({code: 500 , errmsg : JSON.stringify(error)});
+                        }else{
+                            resultObject.list = results;
+                            cb(resultObject);
+                        }
+                    });
+                }
+            });
+        });
+    }
+
+    addFeeItem(param,cb) {
+        let now = util.getNow();
+        console.log(param.product_id)
+        let sql = `
+            insert into fee_item(name) values (${param.name});
+        `;
+        pool.getConnection(function (err, connection) {
+            connection.query(sql, function (error, productInfo, fields) {
+                connection.release();
+                if (error) {
+                    cb({code: 500 , errmsg : JSON.stringify(error)});
+                }else{
+                    cb({code: 0 });
+                }
+            });
+        });
+    }
+
+    removeFeeItem(param,cb) {
+        let now = util.getNow();
+        console.log(param.product_id)
+        let sql = `
+            delete from fee_item where id=${param.id};
+        `;
+        pool.getConnection(function (err, connection) {
+            connection.query(sql, function (error, productInfo, fields) {
+                connection.release();
+                if (error) {
+                    cb({code: 500 , errmsg : JSON.stringify(error)});
+                }else{
+                    cb({code: 0 });
+                }
+            });
+        });
+    }
 
 
 
