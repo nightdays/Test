@@ -102,6 +102,11 @@ module.exports = {
         });
     }),
 
+    removeFeeItem: req(function(req, res, next) {
+        healthService.removeFeeItem(req.body,function(result){
+            res.send(result);
+        });
+    }),
 
     wechat: function(req,res,next) {
         console.log(req);

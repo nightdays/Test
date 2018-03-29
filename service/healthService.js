@@ -294,8 +294,6 @@ class HealthService {
     }
 
     addFeeItem(param,cb) {
-        let now = util.getNow();
-        console.log(param.product_id)
         let sql = `
             insert into fee_item(name) values (${param.name});
         `;
@@ -312,8 +310,6 @@ class HealthService {
     }
 
     removeFeeItem(param,cb) {
-        let now = util.getNow();
-        console.log(param.product_id)
         let sql = `
             delete from fee_item where id=${param.id};
         `;
