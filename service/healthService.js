@@ -121,7 +121,7 @@ class HealthService {
         let userSql = `select id,name,age,gender,phone from user where id = '${user.id}' `;
         let userProductSql = `
             select 
-                h.id, h.name, h.price, h.description, h.expiryDate ,uh.buyDate
+                uh.id , h.id product_id, h.name, h.price, h.description, h.expiryDate ,uh.buyDate
             from
                 health_product h,
                 user_health_product uh
@@ -132,7 +132,7 @@ class HealthService {
         `;
         let usreProductItemSql = `
                 select 
-                    h.id hid, f.name ,  hf.times 
+                    uh.id , h.id hid, f.name ,  hf.times 
                 from
                     health_product h,
                     user_health_product uh,
@@ -158,7 +158,7 @@ class HealthService {
                                 if(!product.itemList) {
                                     product.itemList = [];
                                 }
-                                if(item.hid == product.id ){
+                                if(item.id == product.id ){
                                     product.itemList.push(item);
                                 }
                             }
@@ -171,16 +171,41 @@ class HealthService {
 
     }
 
-
-    listHealthProduct(product, cb) {
-        let sql = `
-        select id, name , price , description , expiryDate from health_product
-        `;
+    listHealthProduct(query , cb) {
         pool.getConnection(function (err, connection) {
-            connection.query(sql, function (error, results, fields) {
-                connection.release();
-                cb(results);
-                if (error) throw error;
+            let sql = "select id, name , price , description , expiryDate from health_product where 1=1";
+            if(query.keywords) {
+                sql += ` and name like '%${query.keywords}%' or description like '%${query.keywords}%' `
+            }
+
+            if(query.gender) {
+                sql += ` and gender = '${query.gender}'  `;
+            }
+            let countSql = sql;
+            if(query.start!=undefined) {
+                let limit = query.limit ? query.limit : 10;
+                let start = (query.start - 1) * limit;
+                sql += ` limit ${start} , ${limit}` ;
+            }
+
+            let resultObject = {};
+            
+            connection.query(countSql, function (error, results, fields) {
+                if (error) {
+                    connection.release();
+                    cb({code: 500 , errmsg : JSON.stringify(error)});
+                }else{
+                    resultObject.total = results.length;
+                    connection.query(sql, function (error, results, fields) {
+                        connection.release();
+                        if (error) {
+                            cb({code: 500 , errmsg : JSON.stringify(error)});
+                        }else{
+                            resultObject.list = results;
+                            cb(resultObject);
+                        }
+                    });
+                }
             });
         });
     }
@@ -225,13 +250,16 @@ class HealthService {
         let now = util.getNow();
         console.log(param.product_id)
         let sql = `
-            insert into user_health_product values (1,${param.product_id},'${now}');
+            insert into user_health_product(user_id,product_id,buyDate) values (1,${param.product_id},'${now}');
         `;
         pool.getConnection(function (err, connection) {
             connection.query(sql, function (error, productInfo, fields) {
                 connection.release();
-                cb({success: true});
-                if (error) throw error;
+                if (error) {
+                    cb({code: 500 , errmsg : JSON.stringify(error)});
+                }else{
+                    cb({code: 0 });
+                }
             });
         });
     }
@@ -245,6 +273,7 @@ class HealthService {
     createTable(cb) {
         let sql = `
         create table user_health_product(
+            id bigint primary key auto_increment,
             user_id bigint,
             product_id bigint,
             buyDate varchar(20)
