@@ -297,7 +297,7 @@ class HealthService {
         let now = util.getNow();
         console.log(param.product_id)
         let sql = `
-            insert into fee_item(name) values ('${param.name}');
+            insert into fee_item(name) values (${param.name});
         `;
         pool.getConnection(function (err, connection) {
             connection.query(sql, function (error, productInfo, fields) {
