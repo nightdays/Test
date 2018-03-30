@@ -40,12 +40,12 @@
 
                 getList() {
                     let xhr = new XMLHttpRequest();
-                    xhr.open("post" , url + "/listFeeItem");
+                    xhr.open("post" , url + "/removeFeeItem");
                     xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.onload = function(result) {
                         this.list = JSON.parse(result.currentTarget.responseText);
                     }.bind(this);
-                    xhr.send(JSON.stringify({id: 1}));
+                    xhr.send(JSON.stringify({name: '123'}));
                 },
 
                 add(item) {

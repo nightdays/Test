@@ -12,7 +12,33 @@ let pool = mysql.createPool({
 })
 
 class HealthService {
-    test() {}
+    async test() {
+       
+    }
+
+    getConnection() {
+        return new Promise(function(resolve,reject) {
+            pool.getConnection(function(err,connection){
+                if(err) {
+                    reject(err);
+                }else{
+                    resolve(connection);
+                }
+            });
+        });
+    }
+
+    dao(connection, sql) {
+        return new Promise(function(resolve,reject){
+            connection.query(sql, function(error,results,fields) {
+                if(error){
+                    reject(error);
+                }else{
+                    resolve(results);
+                }
+            })
+        });
+    }
 
     getTables(cb) {
         pool.getConnection(function (err, connection) {
@@ -206,6 +232,33 @@ class HealthService {
         });
     }
 
+    addHealthProduct(product,cb) {
+        pool.getConnection(function (err, connection) {
+            let addProductSql = `insert into health_product(name,price,description,expiryDate)
+                values ('${product.name}','${product.price}','${product.description}','${product.expiryDate}')
+            `;
+
+            connection.query(addProductsql, function (error, result, fields) {
+                if (error) {
+                    connection.release();
+                    cb({code: 500 , errmsg : JSON.stringify(error)});
+                }else{
+                    let id = result.insertId;
+                    let addItemSql = 
+                    connection.query(sql, function (error, results, fields) {
+                        connection.release();
+                        if (error) {
+                            cb({code: 500 , errmsg : JSON.stringify(error)});
+                        }else{
+                            resultObject.list = results;
+                            cb(resultObject);
+                        }
+                    });
+                }
+            });
+        });
+    }
+
     getHealthProduct(product,cb) {
         if(product.id == undefined) {
             cb("参数为空");
@@ -298,7 +351,7 @@ class HealthService {
             insert into fee_item(name) values (${param.name});
         `;
         pool.getConnection(function (err, connection) {
-            connection.query(sql, function (error, productInfo, fields) {
+            connection.query(sql, function (error, result, fields) {
                 connection.release();
                 if (error) {
                     cb({code: 500 , errmsg : JSON.stringify(error)});
@@ -309,20 +362,15 @@ class HealthService {
         });
     }
 
-    removeFeeItem(param,cb) {
-        let sql = `
-            delete from fee_item where id=${param.id};
-        `;
-        pool.getConnection(function (err, connection) {
-            connection.query(sql, function (error, productInfo, fields) {
-                connection.release();
-                if (error) {
-                    cb({code: 500 , errmsg : JSON.stringify(error)});
-                }else{
-                    cb({code: 0 });
-                }
-            });
+    async removeFeeItem(param,cb) {
+        let con = await this.getConnection();
+        let sql = `delete from fee_item where id=${param.id}`;
+        let results = await this.dao(con,sql).catch((error)=>{
+            con.release();
+            cb({code: 500 , errmsg : JSON.stringify(error)});
         });
+        con.release();
+        cb({code: 0 });
     }
 
 
