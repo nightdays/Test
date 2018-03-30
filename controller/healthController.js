@@ -67,6 +67,13 @@ module.exports = {
         });
     }),
 
+    addHealthProduct:  req(function(req, res, next) {
+        healthService.addHealthProduct(req.body,function(result){
+            res.send(result);
+        });
+    }),
+
+
     getHealthProduct : req(function(req, res, next) {
         healthService.getHealthProduct(req.body,function(result){
             res.send({code:0 , data: result});

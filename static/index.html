@@ -40,12 +40,12 @@
 
                 getList() {
                     let xhr = new XMLHttpRequest();
-                    xhr.open("post" , url + "/removeFeeItem");
+                    xhr.open("post" , url + "/addHealthProduct");
                     xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.onload = function(result) {
                         this.list = JSON.parse(result.currentTarget.responseText);
                     }.bind(this);
-                    xhr.send(JSON.stringify({name: '123'}));
+                    xhr.send(JSON.stringify({name: '123', xxx: [{id:1},{id:2}]}));
                 },
 
                 add(item) {
@@ -59,7 +59,7 @@
                 
                 search() {
                     let xhr = new XMLHttpRequest();
-                    xhr.open("post" , url + "/listUser");
+                    xhr.open("post" , url + "/addHealthProduct");
                     xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.onload = function(result) {
                         this.list = JSON.parse(result.currentTarget.responseText);

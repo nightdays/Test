@@ -232,31 +232,22 @@ class HealthService {
         });
     }
 
-    addHealthProduct(product,cb) {
-        pool.getConnection(function (err, connection) {
-            let addProductSql = `insert into health_product(name,price,description,expiryDate)
-                values ('${product.name}','${product.price}','${product.description}','${product.expiryDate}')
-            `;
+    async addHealthProduct(product,cb) {
+        console.log(product);
+        // let addProductSql = `insert into health_product(name,price,description,expiryDate)
+        //  values ('${product.name}','${product.price}','${product.description}','${product.expiryDate}')
+        // `;
 
-            connection.query(addProductsql, function (error, result, fields) {
-                if (error) {
-                    connection.release();
-                    cb({code: 500 , errmsg : JSON.stringify(error)});
-                }else{
-                    let id = result.insertId;
-                    let addItemSql = 
-                    connection.query(sql, function (error, results, fields) {
-                        connection.release();
-                        if (error) {
-                            cb({code: 500 , errmsg : JSON.stringify(error)});
-                        }else{
-                            resultObject.list = results;
-                            cb(resultObject);
-                        }
-                    });
-                }
-            });
+        let con = await this.getConnection();
+        let result = await this.dao(con , addProductSql).catch((err)=>{
+            con.release();
+            cb({code: 500 , errmsg : JSON.stringify(error)});
         });
+
+        let id = result.insertId;
+
+
+
     }
 
     getHealthProduct(product,cb) {
@@ -348,7 +339,7 @@ class HealthService {
 
     addFeeItem(param,cb) {
         let sql = `
-            insert into fee_item(name) values (${param.name});
+            insert into fee_item(name) values ('${param.name}');
         `;
         pool.getConnection(function (err, connection) {
             connection.query(sql, function (error, result, fields) {
