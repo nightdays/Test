@@ -73,6 +73,12 @@ module.exports = {
         });
     }),
 
+    editHealthProduct:  req(function(req, res, next) {
+        healthService.editHealthProduct(req.body,function(result){
+            res.send(result);
+        });
+    }),
+
 
     getHealthProduct : req(function(req, res, next) {
         healthService.getHealthProduct(req.body,function(result){
