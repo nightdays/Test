@@ -233,19 +233,36 @@ class HealthService {
     }
 
     async addHealthProduct(product,cb) {
-        console.log(product);
-        // let addProductSql = `insert into health_product(name,price,description,expiryDate)
-        //  values ('${product.name}','${product.price}','${product.description}','${product.expiryDate}')
-        // `;
+        let addProductSql = `insert into health_product(name,price,description,expiryDate)
+         values ('${product.name}','${product.price}','${product.description}','${product.expiryDate}')
+        `;
 
         let con = await this.getConnection();
         let result = await this.dao(con , addProductSql).catch((err)=>{
             con.release();
-            cb({code: 500 , errmsg : JSON.stringify(error)});
+            cb({code: 500 , errmsg : JSON.stringify(err)});
         });
 
-        let id = result.insertId;
+        if(result){
+            let id = result.insertId;
+            let feeItems = product.feeItemList;
+            let flag = true;
+            for(let feeItem of feeItems) {
+                let addFeeSql = `insert into product_fee_item values (${id},${feeItem.id},${feeItem.times})`;
+                let res = await this.dao(con , addFeeSql).catch((err)=>{
+                    con.release();
+                    cb({code: 500 , errmsg : JSON.stringify(err)});
+                    flag = false;
+                });
+            }
+            if(flag) {
+                con.release();
+                cb({code: 0});
+            }
+        }
 
+
+ 
 
 
     }

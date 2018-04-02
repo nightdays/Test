@@ -45,7 +45,7 @@
                     xhr.onload = function(result) {
                         this.list = JSON.parse(result.currentTarget.responseText);
                     }.bind(this);
-                    xhr.send(JSON.stringify({name: '123', xxx: [{id:1},{id:2}]}));
+                    xhr.send(JSON.stringify({name: '测试1', price: '300' , description:'asdf', expiryDate:'2018-01-01' ,   feeItemList: [{id:1,times: 1},{id:2,times: 2}]}));
                 },
 
                 add(item) {
