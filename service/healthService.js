@@ -268,13 +268,11 @@ class HealthService {
             name = '${product.name}' , price = '${product.price}', description = '${product.description}',expiryDate = '${product.expiryDate}'
             where id = ${product.id}
         `;
-
         let con = await this.getConnection();
         let result = await this.dao(con , editProductSql).catch((err)=>{
             con.release();
             cb({code: 500 , errmsg : JSON.stringify(err)});
         });
-
         if(result) {
             let deleteSql = `delete from product_fee_item where product_id = ${product.id}`;
             result = await this.dao(con , deleteSql).catch((err)=>{
@@ -282,9 +280,6 @@ class HealthService {
                 cb({code: 500 , errmsg : JSON.stringify(err)});
             });
         }
-       
-
-
         if(result){
             let feeItems = product.feeItemList;
             let flag = true;
@@ -301,6 +296,7 @@ class HealthService {
                 cb({code: 0});
             }
         }
+    }
 
     getHealthProduct(product,cb) {
         if(product.id == undefined) {
