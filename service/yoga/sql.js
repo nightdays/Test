@@ -46,37 +46,37 @@ module.exports = {
     },
     addTrainer(param) {
         return `
-            insert into Trainer(name) values ('${param.name}') 
+            insert into trainer(name) values ('${param.name}') 
         `
     },
     updateTrainer(param) {
         return `
-            update Trainer set name = '${param.name}' where id = ${param.id}
+            update trainer set name = '${param.name}' where id = ${param.id}
         `
     },
     removeTrainer(param) {
         return `
-            delete from Trainer where id = ${param.id}
+            delete from trainer where id = ${param.id}
         `
     },
     listLesson(param) {
         return `
-            select * from Lesson
+            select * from lesson
         `
     },
     addLesson(param) {
         return `
-            insert into Lesson(name) values ('${param.name}') 
+            insert into lesson(name) values ('${param.name}') 
         `
     },
     updateLesson(param) {
         return `
-            update Lesson set name = '${param.name}' where id = ${param.id}
+            update lesson set name = '${param.name}' where id = ${param.id}
         `
     },
     removeLesson(param) {
         return `
-            delete from Lesson where id = ${param.id}
+            delete from lesson where id = ${param.id}
         `
     }
 
