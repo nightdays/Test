@@ -1,8 +1,17 @@
 module.exports = {
     listClassroom(param) {
-        return `
-            select * from classroom
-        `
+        let sql = "select from classroom where 1=1 ";
+
+        if(param.keywords) {
+            sql += ` and name like '%${query.keywords}%'`;
+
+        if(param.start!=undefined) {
+            let start = (query.start - 1) * limit;
+            let limit = param.limit ? query.limit : 10;
+            sql += ` limit ${start} , ${limit}` ;
+        }
+
+        return sql;
     },
     addClassroom(param) {
         return `
