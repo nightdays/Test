@@ -4,7 +4,8 @@ module.exports = {
 
         if(param.keywords) {
             sql += ` and name like '%${query.keywords}%'`;
-
+        }
+        
         if(param.start!=undefined) {
             let start = (query.start - 1) * limit;
             let limit = param.limit ? query.limit : 10;
