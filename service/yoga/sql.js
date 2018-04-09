@@ -5,7 +5,7 @@ module.exports = {
         if(param.keywords) {
             sql += ` and name like '%${query.keywords}%'`;
         }
-        
+
         if(param.start!=undefined) {
             let start = (query.start - 1) * limit;
             let limit = param.limit ? query.limit : 10;
@@ -30,9 +30,19 @@ module.exports = {
         `
     },
     listTrainer(param) {
-        return `
-            select * from Trainer
-        `
+        let sql = "select * from Trainer where 1=1 ";
+        
+        if(param.keywords) {
+            sql += ` and name like '%${query.keywords}%'`;
+        }
+        
+        if(param.start!=undefined) {
+            let start = (query.start - 1) * limit;
+            let limit = param.limit ? query.limit : 10;
+            sql += ` limit ${start} , ${limit}` ;
+        }
+
+        return sql;
     },
     addTrainer(param) {
         return `
