@@ -34,7 +34,7 @@ class YogaService {
 
     async listClassroom(req,res) {
         let con = await this.getConnection();
-        let result = await this.dao(con,api.listClassroom()).catch(err=>fail(res,err,con));
+        let result = await this.dao(con,api.listClassroom(req.body)).catch(err=>fail(res,err,con));
         if(result){
             success(res,result,con);
         }
@@ -66,7 +66,7 @@ class YogaService {
 
     async listTrainer(req,res) {
         let con = await this.getConnection();
-        let result = await this.dao(con,api.listTrainer()).catch(err=>fail(res,err,con));
+        let result = await this.dao(con,api.listTrainer(req.body)).catch(err=>fail(res,err,con));
         if(result){
             success(res,result,con);
         }
@@ -98,7 +98,7 @@ class YogaService {
 
     async listLesson(req,res) {
         let con = await this.getConnection();
-        let result = await this.dao(con,api.listLesson()).catch(err=>fail(res,err,con));
+        let result = await this.dao(con,api.listLesson(req.body)).catch(err=>fail(res,err,con));
         if(result){
             success(res,result,con);
         }

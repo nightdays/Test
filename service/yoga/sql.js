@@ -3,12 +3,12 @@ module.exports = {
         let sql = "select from classroom where 1=1 ";
 
         if(param.keywords) {
-            sql += ` and name like '%${query.keywords}%'`;
+            sql += ` and name like '%${param.keywords}%'`;
         }
 
         if(param.start!=undefined) {
-            let start = (query.start - 1) * limit;
-            let limit = param.limit ? query.limit : 10;
+            let start = (param.start - 1) * limit;
+            let limit = param.limit ? param.limit : 10;
             sql += ` limit ${start} , ${limit}` ;
         }
 
@@ -30,15 +30,15 @@ module.exports = {
         `
     },
     listTrainer(param) {
-        let sql = "select * from Trainer where 1=1 ";
+        let sql = "select * from trainer where 1=1 ";
         
         if(param.keywords) {
-            sql += ` and name like '%${query.keywords}%'`;
+            sql += ` and name like '%${param.keywords}%'`;
         }
         
         if(param.start!=undefined) {
-            let start = (query.start - 1) * limit;
-            let limit = param.limit ? query.limit : 10;
+            let start = (param.start - 1) * limit;
+            let limit = param.limit ? param.limit : 10;
             sql += ` limit ${start} , ${limit}` ;
         }
 
