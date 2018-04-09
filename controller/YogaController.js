@@ -24,6 +24,40 @@ module.exports = {
 
     removeClassroom(req,res){
         ys.removeClassroom(req,res);
+    },
+
+    listTrainer(req,res){
+        ys.listTrainer(req,res);
+    },
+
+    addTrainer(req,res){
+        ys.addTrainer(req,res);
+    },
+
+    updateTrainer(req,res){
+        ys.updateTrainer(req,res);
+    },
+
+    removeTrainer(req,res){
+        ys.removeTrainer(req,res);
+    },
+
+    listLesson(req,res){
+        ys.listLesson(req,res);
+    },
+
+    addLesson(req,res){
+        ys.addLesson(req,res);
+    },
+
+    updateLesson(req,res){
+        ys.updateLesson(req,res);
+    },
+
+    removeLesson(req,res){
+        ys.removeLesson(req,res);
     }
+
+
 
 }

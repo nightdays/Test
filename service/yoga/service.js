@@ -64,6 +64,70 @@ class YogaService {
         }
     }
 
+    async listTrainer(req,res) {
+        let con = await this.getConnection();
+        let result = await this.dao(con,api.listTrainer()).catch(err=>fail(res,err,con));
+        if(result){
+            success(res,result,con);
+        }
+    }
+
+    async addTrainer(req,res) {
+        let con = await this.getConnection();
+        let result = await this.dao(con,api.addTrainer(req.body)).catch(err=>fail(res,err,con));
+        if(result){
+            success(res,result,con);
+        }
+    }
+
+    async updateTrainer(req,res) {
+        let con = await this.getConnection();
+        let result = await this.dao(con,api.updateTrainer(req.body)).catch(err=>fail(res,err,con));
+        if(result){
+            success(res,result,con);
+        }
+    }
+
+    async removeTrainer(req,res) {
+        let con = await this.getConnection();
+        let result = await this.dao(con,api.removeTrainer(req.body)).catch(err=>fail(res,err,con));
+        if(result){
+            success(res,result,con);
+        }
+    }
+
+    async listLesson(req,res) {
+        let con = await this.getConnection();
+        let result = await this.dao(con,api.listLesson()).catch(err=>fail(res,err,con));
+        if(result){
+            success(res,result,con);
+        }
+    }
+
+    async addLesson(req,res) {
+        let con = await this.getConnection();
+        let result = await this.dao(con,api.addLesson(req.body)).catch(err=>fail(res,err,con));
+        if(result){
+            success(res,result,con);
+        }
+    }
+
+    async updateLesson(req,res) {
+        let con = await this.getConnection();
+        let result = await this.dao(con,api.updateLesson(req.body)).catch(err=>fail(res,err,con));
+        if(result){
+            success(res,result,con);
+        }
+    }
+
+    async removeLesson(req,res) {
+        let con = await this.getConnection();
+        let result = await this.dao(con,api.removeLesson(req.body)).catch(err=>fail(res,err,con));
+        if(result){
+            success(res,result,con);
+        }
+    }
+
 
 
 
