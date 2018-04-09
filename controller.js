@@ -1,7 +1,7 @@
 
-delete require.cache[require.resolve("./controller/healthController")];
-let healthController = require("./controller/healthController");
+delete require.cache[require.resolve("./controller/YogaController")];
+let YogaController = require("./controller/YogaController");
 
-let baseControllers = Object.assign({},healthController);
+let baseControllers = Object.assign({},YogaController);
 
 module.exports = baseControllers;
