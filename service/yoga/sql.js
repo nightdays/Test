@@ -1,6 +1,6 @@
 module.exports = {
     listClassroom(param) {
-        let sql = "select from classroom where 1=1 ";
+        let sql = "select * from classroom where 1=1 ";
 
         if(param.keywords) {
             sql += ` and name like '%${param.keywords}%'`;
