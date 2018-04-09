@@ -1,4 +1,11 @@
 module.exports = {
+    countClassroom(param){
+        let sql = "select count(*) as total from classroom where 1=1 ";
+        if(param.keywords) {
+            sql += ` and name like '%${param.keywords}%'`;
+        }
+        return sql;
+    },
     listClassroom(param) {
         let sql = "select * from classroom where 1=1 ";
 
@@ -28,6 +35,13 @@ module.exports = {
         return `
             delete from classroom where id = ${param.id}
         `
+    },
+    countTrainer(param){
+        let sql = "select count(*) as total from trainer where 1=1 ";
+        if(param.keywords) {
+            sql += ` and name like '%${param.keywords}%'`;
+        }
+        return sql;
     },
     listTrainer(param) {
         let sql = "select * from trainer where 1=1 ";
