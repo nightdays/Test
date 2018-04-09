@@ -7,8 +7,8 @@ module.exports = {
         }
 
         if(param.start!=undefined) {
-            let start = (param.start - 1) * limit;
             let limit = param.limit ? param.limit : 10;
+            let start = (param.start - 1) * limit;
             sql += ` limit ${start} , ${limit}` ;
         }
 
@@ -37,8 +37,8 @@ module.exports = {
         }
         
         if(param.start!=undefined) {
-            let start = (param.start - 1) * limit;
             let limit = param.limit ? param.limit : 10;
+            let start = (param.start - 1) * limit;
             sql += ` limit ${start} , ${limit}` ;
         }
 
@@ -78,6 +78,27 @@ module.exports = {
         return `
             delete from lesson where id = ${param.id}
         `
+    },
+
+    data() {
+        return {
+            start: 1,
+            limit : 5
+        }
+    },
+
+    getCoachList() {
+        let param = {
+            start : this.start,
+            limit : this.limit
+        }
+        this.ajax('post', 'listTrainer' , function(res){
+
+        }.bind(this) , param);
+    },
+    currentChange(page) {
+        this.start = page;
+        this.getCoachList();
     }
 
 
