@@ -39,7 +39,7 @@ class YogaService {
         if(result){
             let data = {
                 total : count[0].total,
-                data : result
+                list : result
             }
             success(res,data,con);
         }
@@ -76,7 +76,7 @@ class YogaService {
         if(result){
             let data = {
                 total : count[0].total,
-                data : result
+                list : result
             }
             success(res,data,con);
         }
