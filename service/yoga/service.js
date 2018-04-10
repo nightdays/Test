@@ -108,9 +108,14 @@ class YogaService {
 
     async listLesson(req,res) {
         let con = await this.getConnection();
+        let count = await this.dao(con,api.countLesson(req.body));
         let result = await this.dao(con,api.listLesson(req.body)).catch(err=>fail(res,err,con));
         if(result){
-            success(res,result,con);
+            let data = {
+                total : count[0].total,
+                list : result
+            }
+            success(res,data,con);
         }
     }
 
