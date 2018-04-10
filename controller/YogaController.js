@@ -56,6 +56,22 @@ module.exports = {
 
     removeLesson(req,res){
         ys.removeLesson(req,res);
+    },
+
+    listAppointLesson(req,res){
+        ys.listAppointLesson(req,res);
+    },
+
+    addAppointLesson(req,res){
+        ys.addAppointLesson(req,res);
+    },
+
+    updateAppointLesson(req,res){
+        ys.updateAppointLesson(req,res);
+    },
+
+    removeAppointLesson(req,res){
+        ys.removeAppointLesson(req,res);
     }
 
 

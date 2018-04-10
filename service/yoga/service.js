@@ -143,6 +143,41 @@ class YogaService {
         }
     }
 
+    async listAppointLesson(req,res) {
+        let con = await this.getConnection();
+        let count = await this.dao(con,api.countAppointLesson(req.body));
+        let result = await this.dao(con,api.listAppointLesson()).catch(err=>fail(res,err,con));
+        if(result){
+            success(res,result,con);
+        }
+    }
+
+    async addAppointLesson(req,res) {
+        let con = await this.getConnection();
+        let result = await this.dao(con,api.addAppointLesson(req.body)).catch(err=>fail(res,err,con));
+        if(result){
+            success(res,result,con);
+        }
+    }
+
+    async updateAppointLesson(req,res) {
+        let con = await this.getConnection();
+        let result = await this.dao(con,api.updateAppointLesson(req.body)).catch(err=>fail(res,err,con));
+        if(result){
+            success(res,result,con);
+        }
+    }
+
+    async removeAppointLesson(req,res) {
+        let con = await this.getConnection();
+        let result = await this.dao(con,api.removeAppointLesson(req.body)).catch(err=>fail(res,err,con));
+        if(result){
+            success(res,result,con);
+        }
+    }
+
+    
+
 
 
 

@@ -91,7 +91,7 @@ module.exports = {
         `;
         
         if(param.keywords) {
-            sql += ` and name like '%${param.keywords}%'`;
+            sql += ` and l.name like '%${param.keywords}%'`;
         }
         
         if(param.start!=undefined) {
@@ -123,6 +123,58 @@ module.exports = {
     removeLesson(param) {
         return `
             delete from lesson where id = ${param.id}
+        `
+    },
+    countAppointLesson(param) {
+        let sql = "select count(*) as total from appoint_lesson where 1=1 ";
+        if(param.keywords) {
+            sql += ` and name like '%${param.keywords}%'`;
+        }
+        return sql;
+    },
+    listAppointLesson(param) {
+        let sql = `
+            select
+                al.id , al.appoint_date , l.id lesson_id , l.name , l.level, c.name classroom_name , t.name trainer_name
+            from 
+                appoint_lesson al , lesson l , classroom c , trainer t 
+            where
+                al.lesson_id = l.id and l.classroom_id = c.id and l.trainer_id = t.id
+        `;
+        
+        if(param.keywords) {
+            sql += ` and name like '%${param.keywords}%'`;
+        }
+        
+        if(param.start!=undefined) {
+            let limit = param.limit ? param.limit : 10;
+            let start = (param.start - 1) * limit;
+            sql += ` limit ${start} , ${limit}` ;
+        }
+
+        return sql;
+    },
+    addAppointLesson(param) {
+        return `
+            insert into appoint_lesson(name,level,classroom_id,trainer_id) 
+            values 
+            ('${param.name}','${param.level}','${param.classroom_id}','${param.trainer_id}') 
+        `
+    },
+    updateAppointLesson(param) {
+        return `
+            update appoint_lesson 
+            set
+            name = '${param.name}',
+            level = '${param.level}',
+            classroom_id = '${param.classroom_id}',
+            trainer_id = '${param.trainer_id}'
+            where id = ${param.id}
+        `
+    },
+    removeAppointLesson(param) {
+        return `
+            delete from appoint_lesson where id = ${param.id}
         `
     }
 
