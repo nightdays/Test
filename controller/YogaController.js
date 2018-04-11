@@ -72,6 +72,12 @@ module.exports = {
 
     removeAppointLesson(req,res){
         ys.removeAppointLesson(req,res);
+    },
+
+
+    //公众号端
+    appointLesson(req,res) {
+        ys.appointLesson(req,res);
     }
 
 

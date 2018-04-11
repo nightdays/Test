@@ -35,12 +35,13 @@
             },
             mounted() {
                 this.getList();
+                // this.add();
             },
             methods: {
 
                 getList() {
                     let xhr = new XMLHttpRequest();
-                    xhr.open("post" , url + "/listTrainer");
+                    xhr.open("post" , url + "/listAppointLesson");
                     xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.onload = function(result) {
                         this.list = JSON.parse(result.currentTarget.responseText);
@@ -48,13 +49,19 @@
                     xhr.send(JSON.stringify({start:1, limit: 5}));
                 },
 
-                add(item) {
+                add() {
                     let xhr = new XMLHttpRequest();
-                    xhr.open("post" , url + "/insertUser");
+                    xhr.open("post" , url + "/addAppointLesson");
                     xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.onload = function(result) {
                     }
-                    xhr.send(JSON.stringify(item));
+                    let param = {
+                        lesson_id : 1,
+                        lesson_date: "2014-01-01",
+                        start_time : "20:00",
+                        end_time : "21:00"
+                    };
+                    xhr.send(JSON.stringify(param));
                 },
                 
                 search() {

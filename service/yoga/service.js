@@ -86,7 +86,7 @@ class YogaService {
         let con = await this.getConnection();
         let result = await this.dao(con,api.addTrainer(req.body)).catch(err=>fail(res,err,con));
         if(result){
-            success(res,result,con);
+            success(res,null,con);
         }
     }
 
@@ -94,7 +94,7 @@ class YogaService {
         let con = await this.getConnection();
         let result = await this.dao(con,api.updateTrainer(req.body)).catch(err=>fail(res,err,con));
         if(result){
-            success(res,result,con);
+            success(res,null,con);
         }
     }
 
@@ -102,7 +102,7 @@ class YogaService {
         let con = await this.getConnection();
         let result = await this.dao(con,api.removeTrainer(req.body)).catch(err=>fail(res,err,con));
         if(result){
-            success(res,result,con);
+            success(res,null,con);
         }
     }
 
@@ -146,7 +146,7 @@ class YogaService {
     async listAppointLesson(req,res) {
         let con = await this.getConnection();
         let count = await this.dao(con,api.countAppointLesson(req.body));
-        let result = await this.dao(con,api.listAppointLesson()).catch(err=>fail(res,err,con));
+        let result = await this.dao(con,api.listAppointLesson(req.body)).catch(err=>fail(res,err,con));
         if(result){
             success(res,result,con);
         }
@@ -186,12 +186,14 @@ class YogaService {
 
         for(let sqlKey in tableSql.deleteSql){
             let sql = tableSql.deleteSql[sqlKey];
-            await this.dao(con , sql);
+            let result  = await this.dao(con , sql).catch(err=>fail(res,err,con));
+            if(!result) return;
         }
 
         for(let sqlKey in tableSql.addSql){
             let sql = tableSql.addSql[sqlKey];
-            await this.dao(con , sql);
+            let result  = await this.dao(con , sql).catch(err=>fail(res,err,con));
+            if(!result) return;
         }
 
         success(res,null,con);

@@ -106,7 +106,7 @@ module.exports = {
         return `
             insert into lesson(name,level,classroom_id,trainer_id) 
             values 
-            ('${param.name}','${param.level}','${param.classroom_id}','${param.trainer_id}') 
+            ('${param.name}','${param.level}',${param.classroom_id},${param.trainer_id}) 
         `
     },
     updateLesson(param) {
@@ -115,8 +115,8 @@ module.exports = {
             set
             name = '${param.name}',
             level = '${param.level}',
-            classroom_id = '${param.classroom_id}',
-            trainer_id = '${param.trainer_id}'
+            classroom_id = ${param.classroom_id},
+            trainer_id = ${param.trainer_id}
             where id = ${param.id}
         `
     },
@@ -135,7 +135,15 @@ module.exports = {
     listAppointLesson(param) {
         let sql = `
             select
-                al.id , al.appoint_date , l.id lesson_id , l.name , l.level, c.name classroom_name , t.name trainer_name
+                al.id ,
+                al.lesson_date , 
+                al.start_time ,
+                al.end_time,
+                l.id lesson_id , 
+                l.name lesson_name, 
+                l.level lesson_level, 
+                c.name classroom_name , 
+                t.name trainer_name
             from 
                 appoint_lesson al , lesson l , classroom c , trainer t 
             where
@@ -143,7 +151,11 @@ module.exports = {
         `;
         
         if(param.keywords) {
-            sql += ` and name like '%${param.keywords}%'`;
+            sql += ` and lesson_name like '%${param.keywords}%'`;
+        }
+
+        if(param.lesson_date) {
+            sql += ` and lesson_date = '${param.lesson_date}'`
         }
         
         if(param.start!=undefined) {
@@ -156,19 +168,19 @@ module.exports = {
     },
     addAppointLesson(param) {
         return `
-            insert into appoint_lesson(name,level,classroom_id,trainer_id) 
+            insert into appoint_lesson(lesson_id,lesson_date,start_time,end_time) 
             values 
-            ('${param.name}','${param.level}','${param.classroom_id}','${param.trainer_id}') 
+            (${param.lesson_id},'${param.lesson_date}','${param.start_time}','${param.end_time}') 
         `
     },
     updateAppointLesson(param) {
         return `
             update appoint_lesson 
             set
-            name = '${param.name}',
-            level = '${param.level}',
-            classroom_id = '${param.classroom_id}',
-            trainer_id = '${param.trainer_id}'
+            lesson_id = ${param.lesson_id},
+            lesson_date = '${param.lesson_date}',
+            start_time = '${param.start_time}',
+            end_time = '${param.end_time}'
             where id = ${param.id}
         `
     },
