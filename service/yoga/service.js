@@ -148,7 +148,11 @@ class YogaService {
         let count = await this.dao(con,api.countAppointLesson(req.body));
         let result = await this.dao(con,api.listAppointLesson(req.body)).catch(err=>fail(res,err,con));
         if(result){
-            success(res,result,con);
+            let data = {
+                total : count[0].total,
+                list : result
+            }
+            success(res,data,con);
         }
     }
 
