@@ -102,7 +102,7 @@ class YogaService {
         let con = await this.getConnection();
         let result = await this.dao(con,api.removeTrainer(req.body)).catch(err=>fail(res,err,con));
         if(result){
-            success(res,null,con);
+            success(res,result,con);
         }
     }
 

@@ -34,8 +34,8 @@
                 keywords: ''
             },
             mounted() {
-                this.getList();
-                // this.add();
+                // this.getList();
+                this.add();
             },
             methods: {
 
@@ -51,15 +51,12 @@
 
                 add() {
                     let xhr = new XMLHttpRequest();
-                    xhr.open("post" , url + "/addAppointLesson");
+                    xhr.open("post" , url + "/removeLesson");
                     xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.onload = function(result) {
                     }
                     let param = {
-                        lesson_id : 1,
-                        lesson_date: "2014-01-01",
-                        start_time : "20:00",
-                        end_time : "21:00"
+                        id : 23
                     };
                     xhr.send(JSON.stringify(param));
                 },

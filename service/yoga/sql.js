@@ -70,7 +70,10 @@ module.exports = {
     },
     removeTrainer(param) {
         return `
-            delete from trainer where id = ${param.id}
+            delete t.* , l.* , al.* from trainer t
+            inner join lesson l on t.id = l.trainer_id
+            inner join appoint_lesson al on l.id = al.lesson_id
+            where t.id = ${param.id}
         `
     },
     countLesson(param) {
@@ -122,7 +125,11 @@ module.exports = {
     },
     removeLesson(param) {
         return `
-            delete from lesson where id = ${param.id}
+            delete l.*,al.*
+            from lesson l
+            inner join appoint_lesson al
+            on l.id = al.lesson_id
+            where l.id = ${param.id}
         `
     },
     countAppointLesson(param) {
@@ -156,6 +163,14 @@ module.exports = {
 
         if(param.lesson_date) {
             sql += ` and lesson_date = '${param.lesson_date}'`
+        }
+
+        if(param.trainer_id) {
+            sql += ` and l.trainer_id = ${param.trainer_id}`
+        }
+
+        if(param.lesson_id) {
+            sql += ` and l.id = ${param.lesson_id}`
         }
         
         if(param.start!=undefined) {
