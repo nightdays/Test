@@ -123,7 +123,7 @@ class YogaService {
         let con = await this.getConnection();
         let result = await this.dao(con,api.addLesson(req.body)).catch(err=>fail(res,err,con));
         if(result){
-            success(res,result,con);
+            success(res,null,con);
         }
     }
 
@@ -131,7 +131,7 @@ class YogaService {
         let con = await this.getConnection();
         let result = await this.dao(con,api.updateLesson(req.body)).catch(err=>fail(res,err,con));
         if(result){
-            success(res,result,con);
+            success(res,null,con);
         }
     }
 
@@ -139,7 +139,7 @@ class YogaService {
         let con = await this.getConnection();
         let result = await this.dao(con,api.removeLesson(req.body)).catch(err=>fail(res,err,con));
         if(result){
-            success(res,result,con);
+            success(res,null,con);
         }
     }
 
@@ -156,7 +156,7 @@ class YogaService {
         let con = await this.getConnection();
         let result = await this.dao(con,api.addAppointLesson(req.body)).catch(err=>fail(res,err,con));
         if(result){
-            success(res,result,con);
+            success(res,null,con);
         }
     }
 
@@ -164,7 +164,7 @@ class YogaService {
         let con = await this.getConnection();
         let result = await this.dao(con,api.updateAppointLesson(req.body)).catch(err=>fail(res,err,con));
         if(result){
-            success(res,result,con);
+            success(res,null,con);
         }
     }
 
@@ -172,7 +172,7 @@ class YogaService {
         let con = await this.getConnection();
         let result = await this.dao(con,api.removeAppointLesson(req.body)).catch(err=>fail(res,err,con));
         if(result){
-            success(res,result,con);
+            success(res,null,con);
         }
     }
 
