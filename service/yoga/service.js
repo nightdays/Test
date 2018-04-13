@@ -183,7 +183,7 @@ class YogaService {
     async appointLesson(req,res) {
         let param  = {
             user_id : 1,
-            appoint_lesson_id : req.appoint_lesson_id
+            appoint_lesson_id : req.body.appoint_lesson_id
         };
         let con = await this.getConnection();
         let result = await this.dao(con,api.addUserAppointLesson(param)).catch(err=>fail(res,err,con));
