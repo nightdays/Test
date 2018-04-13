@@ -206,6 +206,51 @@ module.exports = {
         return `
             delete from appoint_lesson where id = ${param.id}
         `
+    },
+    listUserAppointLesson(param) {
+        let sql = `
+        select
+            ual.id,
+            al.id appoint_lesson_id,
+            al.lesson_date , 
+            al.start_time ,
+            al.end_time,
+            l.id lesson_id , 
+            l.name lesson_name, 
+            l.level lesson_level, 
+            c.name classroom_name , 
+            t.name trainer_name
+        from 
+            appoint_lesson al , lesson l , classroom c , trainer t , user_appoint_lesson ual, user u
+        where
+            al.lesson_id = l.id and l.classroom_id = c.id and l.trainer_id = t.id and 
+            ual.appoint_lesson_id = al.id and ual.user_id = u.id
+            and u.id = ${param.user_id}
+        `;
+
+
+        sql += ' order by lesson_date desc,start_time asc';
+
+        if(param.start!=undefined) {
+            let limit = param.limit ? param.limit : 10;
+            let start = (param.start - 1) * limit;
+            sql += ` limit ${start} , ${limit}` ;
+        }
+
+        
+        return sql;
+    },
+
+    addUserAppointLesson(param) {
+        let sql = `
+            insert into user_appoint_lesson(user_id,appoint_lesson_id) values (${user_id} , ${appoint_lesson_id})
+        `
+    },
+
+    removeUserAppointLesson(param) {
+        let sql = `
+            delete from user_appoint_lesson where id = ${id}
+        `
     }
 
 
