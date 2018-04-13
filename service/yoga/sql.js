@@ -179,6 +179,8 @@ module.exports = {
             sql += ` limit ${start} , ${limit}` ;
         }
 
+        sql += ' order by lesson_date desc,start_time asc';
+
         return sql;
     },
     addAppointLesson(param) {
