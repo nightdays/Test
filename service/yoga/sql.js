@@ -243,13 +243,13 @@ module.exports = {
 
     addUserAppointLesson(param) {
         let sql = `
-            insert into user_appoint_lesson(user_id,appoint_lesson_id) values (${user_id} , ${appoint_lesson_id})
+            insert into user_appoint_lesson(user_id,appoint_lesson_id) values (${param.user_id} , ${param.appoint_lesson_id})
         `
     },
 
     removeUserAppointLesson(param) {
         let sql = `
-            delete from user_appoint_lesson where id = ${id}
+            delete from user_appoint_lesson where id = ${param.id}
         `
     }
 
