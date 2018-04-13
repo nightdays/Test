@@ -182,8 +182,6 @@ class YogaService {
 
     async appointLesson(req,res) {
         let con = await this.getConnection();
-        
-        
     }
 
     

@@ -172,15 +172,16 @@ module.exports = {
         if(param.lesson_id) {
             sql += ` and l.id = ${param.lesson_id}`
         }
-        
+
+        sql += ' order by lesson_date desc,start_time asc';
+
         if(param.start!=undefined) {
             let limit = param.limit ? param.limit : 10;
             let start = (param.start - 1) * limit;
             sql += ` limit ${start} , ${limit}` ;
         }
 
-        sql += ' order by lesson_date desc,start_time asc';
-
+        
         return sql;
     },
     addAppointLesson(param) {
