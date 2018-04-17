@@ -71,8 +71,8 @@ module.exports = {
     removeTrainer(param) {
         return `
             delete t.* , l.* , al.* from trainer t
-            inner join lesson l on t.id = l.trainer_id
-            inner join appoint_lesson al on l.id = al.lesson_id
+            left join lesson l on t.id = l.trainer_id
+            left join appoint_lesson al on l.id = al.lesson_id
             where t.id = ${param.id}
         `
     },
@@ -127,7 +127,7 @@ module.exports = {
         return `
             delete l.*,al.*
             from lesson l
-            inner join appoint_lesson al
+            left join appoint_lesson al
             on l.id = al.lesson_id
             where l.id = ${param.id}
         `
