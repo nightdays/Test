@@ -1,96 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-
-    <script>
-
-        document.documentElement.style.fontSize = window.innerWidth / 750 * 100 + "px";
-
-    </script>
-
-
 </head>
-
 <body>
-
-    <div id="app">
-    </div>
-
-
-    <script>
-        // let url = "https://www.nightdays.net/yoga"
-        let url = "http://localhost/yoga"
-
-        new Vue({
-            el: '#app',
-            data: {
-                list: [],
-                keywords: ''
-            },
-            mounted() {
-                this.getList();
-                // this.add();
-            },
-            methods: {
-
-                getList() {
-                    let xhr = new XMLHttpRequest();
-                    xhr.open("post" , url + "/listAppointLesson");
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.onload = function(result) {
-                        this.list = JSON.parse(result.currentTarget.responseText);
-                    }.bind(this);
-                    xhr.send(JSON.stringify({start:1, limit: 5}));
-                },
-
-                add() {
-                    let xhr = new XMLHttpRequest();
-                    xhr.open("post" , url + "/removeLesson");
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.onload = function(result) {
-                    }
-                    let param = {
-                        id : 23
-                    };
-                    xhr.send(JSON.stringify(param));
-                },
-                
-                search() {
-                    let xhr = new XMLHttpRequest();
-                    xhr.open("post" , url + "/addHealthProduct");
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.onload = function(result) {
-                        this.list = JSON.parse(result.currentTarget.responseText);
-                    }.bind(this);
-                    xhr.send(JSON.stringify({keywords : this.keywords}));
-                },
-
-                edit(item) {
-                    let xhr = new XMLHttpRequest();
-                    xhr.open("post" , url + "/updateUser");
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.onload = function(result) {
-                    }
-                    xhr.send(JSON.stringify(item));
-                },
-
-                userInfo() {
-                    let x = function (result) {
-
-                        this.user = result;
-
-                    }
-                }
-
-            }
-        });
-    </script>
+    Hello world
 </body>
-
 </html>
