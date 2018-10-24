@@ -7,12 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        html,body {
-            padding:0;
-            margin:0;
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: scroll;
         }
 
         .test {
+            position: absolute;
             left: 0;
             bottom: 0;
             text-align: center;
@@ -35,9 +45,11 @@
         .canvas canvas {
             background: red;
         }
-        .fixed{
+
+        .fixed {
             position: fixed;
         }
+
         .static {
             position: static;
         }
@@ -46,28 +58,34 @@
 
 <body>
 
-    <div class="canvas">
-        <canvas id="canvas1" width="200" height="200"></canvas>
+    <div class="container">
+        <div class="canvas">
+            <canvas id="canvas1" width="200" height="200"></canvas>
+        </div>
+
+
+        <div class="test">
+            <input type="text"/>
+        </div>
 
     </div>
 
-    <div class="test fixed">
-        <input  type="text" onfocus="xxx()" onblur="yyy()" />
-    </div>
+
+
 
     <script>
 
-        function xxx(){
-            let test= event.target.parentNode ; 
+        function xxx() {
+            let test = event.target.parentNode;
             test.classList.remove("fixed");
             test.classList.add("static");
-            setTimeout(()=>{
+            setTimeout(() => {
                 document.body.scrollTop = document.body.scrollHeight;
-            },100)
+            }, 100)
         }
 
         function yyy() {
-            let test= event.target.parentNode ; 
+            let test = event.target.parentNode;
             test.classList.remove("static");
             test.classList.add("fixed");
         }
