@@ -13,7 +13,6 @@
         }
 
         .test {
-            position: fixed;
             left: 0;
             bottom: 0;
             text-align: center;
@@ -36,6 +35,12 @@
         .canvas canvas {
             background: red;
         }
+        .fixed{
+            position: fixed;
+        }
+        .static {
+            position: static;
+        }
     </style>
 </head>
 
@@ -46,11 +51,29 @@
 
     </div>
 
-    <div class="test">
-        <input type="text" />
+    <div class="test fixed">
+        <input  type="text" onfocus="xxx()" onblur="yyy()" />
     </div>
 
     <script>
+
+        function xxx(){
+            let test= event.target.parentNode ; 
+            test.classList.remove("fixed");
+            test.classList.add("static");
+            setTimeout(()=>{
+                document.body.scrollTop = document.body.scrollHeight;
+            },100)
+        }
+
+        function yyy() {
+            let test= event.target.parentNode ; 
+            test.classList.remove("static");
+            test.classList.add("fixed");
+        }
+
+
+
         let ctx = canvas1.getContext("2d");
         ctx.fillStyle = "black";
 
