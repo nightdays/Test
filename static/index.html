@@ -11,115 +11,49 @@
         body {
             padding: 0;
             margin: 0;
-            height: 100vh;
+            height: 100%;
         }
 
-        .container {
+        .main {
             position: relative;
             height: 100%;
-            overflow-x: hidden;
+        }
+
+        .sectionA {
+            box-sizing: border-box;
+            padding-bottom: 60px;
+            height: 100%;
             overflow-y: scroll;
+            -webkit-overflow-scrolling: touch
         }
 
-        .test {
+        .sectionB {
             position: absolute;
+            height: 60px;
+            overflow: hidden;
             left: 0;
+            right: 0;
             bottom: 0;
-            text-align: center;
-            width: 100vw;
-        }
-
-        .test input {
-            width: 200px;
-            border: 1px solid black;
-            border-radius: 16px;
-            outline: none;
-            padding: 10px;
-        }
-
-        .canvas {
-            width: 100vw;
-            text-align: center;
-        }
-
-        .canvas canvas {
-            background: red;
-        }
-
-        .fixed {
-            position: fixed;
-        }
-
-        .static {
-            position: static;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="canvas">
+    <div class="main">
+        <div class="sectionA">
             <canvas id="canvas1" width="200" height="200"></canvas>
         </div>
 
 
-        <div class="test">
-            <input type="text"/>
+        <div class="sectionB">
+            <input type="text" />
         </div>
 
     </div>
 
 
 
-
-    <script>
-
-        function xxx() {
-            let test = event.target.parentNode;
-            test.classList.remove("fixed");
-            test.classList.add("static");
-            setTimeout(() => {
-                document.body.scrollTop = document.body.scrollHeight;
-            }, 100)
-        }
-
-        function yyy() {
-            let test = event.target.parentNode;
-            test.classList.remove("static");
-            test.classList.add("fixed");
-        }
-
-
-
-        let ctx = canvas1.getContext("2d");
-        ctx.fillStyle = "black";
-
-        setTimeout(() => {
-
-            ctx.moveTo(10, 10);
-            ctx.lineTo(190, 10);
-            ctx.stroke();
-
-            setTimeout(() => {
-                ctx.moveTo(50, 10);
-                ctx.lineTo(50, 100);
-                ctx.stroke();
-
-                setTimeout(() => {
-                    ctx.moveTo(150, 10);
-                    ctx.lineTo(150, 150);
-                    ctx.stroke();
-                }, 1000)
-
-
-            }, 1000)
-
-
-
-        }, 1000);
-
-    </script>
 </body>
 
 </html>
