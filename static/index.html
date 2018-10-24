@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
         .test {
             position: fixed;
-            left:0;
+            left: 0;
             bottom: 0;
             text-align: center;
             width: 100vw;
         }
+
         .test input {
             width: 200px;
             border: 1px solid black;
@@ -20,11 +22,58 @@
             outline: none;
             padding: 10px;
         }
+
+        .canvas {
+            width: 100vw;
+            text-align: center;
+        }
+
+        .canvas canvas {
+            background: red;
+        }
     </style>
 </head>
+
 <body>
-    <div class="test">
-        <input type="text"  />
+
+    <div class="canvas">
+        <canvas id="canvas1" width="200" height="200"></canvas>
+
     </div>
+
+    <div class="test">
+        <input type="text" />
+    </div>
+
+    <script>
+        let ctx = canvas1.getContext("2d");
+        ctx.fillStyle = "black";
+
+        setTimeout(() => {
+
+            ctx.moveTo(10, 10);
+            ctx.lineTo(190, 10);
+            ctx.stroke();
+
+            setTimeout(() => {
+                ctx.moveTo(50, 10);
+                ctx.lineTo(50, 100);
+                ctx.stroke();
+
+                setTimeout(() => {
+                    ctx.moveTo(150, 10);
+                    ctx.lineTo(150, 150);
+                    ctx.stroke();
+                }, 1000)
+
+
+            }, 1000)
+
+
+
+        }, 1000);
+
+    </script>
 </body>
+
 </html>
