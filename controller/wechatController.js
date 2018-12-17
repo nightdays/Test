@@ -30,6 +30,6 @@ module.exports = {
         taskname: "开通交付"
       }
     ];
-    res.send("helloworld");
+    res.send(list);
   })
 };
