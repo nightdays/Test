@@ -1,12 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        .main {
+            position: relative;
+            height: 100%;
+        }
+
+        .sectionA {
+            box-sizing: border-box;
+            padding-bottom: 60px;
+            height: 100%;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch
+        }
+
+        .sectionB {
+            position: absolute;
+            height: 60px;
+            overflow: hidden;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    </style>
 </head>
+
 <body>
-    Hello world
+
+    <div class="main">
+        <div class="sectionA">
+            <canvas id="canvas1" width="200" height="200"></canvas>
+        </div>
+
+
+        <div class="sectionB">
+            <input type="text" />
+        </div>
+
+    </div>
+
+
+
 </body>
+
 </html>
