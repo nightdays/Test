@@ -4,7 +4,7 @@ for(let i=0; i<30; i++) {
 }
 
 
-export default function getPageData(pageNum , pageSize=10) {
+module.exports =  function getPageData(pageNum , pageSize=10) {
     let startIndex = (pageNum - 1) * pageSize;
     let endIndex = pageNum * pageSize
     let temp = [];
