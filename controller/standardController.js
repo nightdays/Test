@@ -18,6 +18,8 @@ function req(cb) {
   module.exports = {
     "standard/queryCutoverList.do": req(function(req, res, next) {
         let param = req.body;
+        console.log(param)
+        // console.log(123 , param); 
         let p = page(param.pageNum,param.pageSize);
         
       let result = {
