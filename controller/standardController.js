@@ -30,6 +30,7 @@ module.exports = {
       temp.A = `${data.index}四川电信广播电台应卢卡斯分厘卡即使对方犬瘟热如婆须布兰卡的身份肺结核规划局规划局规划`
       temp.B = "090123123";
       temp.C = "1";// 业务类型
+      temp.D = Math.floor( Math.random() * 4 );// 状态 1进行中，2已超时，3已完成
       temp.D = new Date();
       temp.E = "勘探中";
       temp.F = Math.floor( Math.random() * 100 );
