@@ -15,6 +15,15 @@ function req(cb) {
 let baseName = "";
 
 module.exports = {
+
+  "testA" : req(function(req, res, next) {
+
+
+    
+  }),
+
+
+
   "weChat/queryOrderProgress": req(function(req, res, next) {
     let list = [
       {
