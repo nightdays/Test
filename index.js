@@ -1,6 +1,6 @@
 
 module.exports = {
     helloWorld: function(req , res) {
-        res.send("hello nds");
+        res.send("hello nds123");
     }
 }
