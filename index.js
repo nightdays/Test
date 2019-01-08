@@ -1,6 +1,6 @@
 
 module.exports = {
     helloWorld: function(req , res) {
-        res.send("hello world ddddadsfdd");
+        res.send("hello world asdfasdf");
     }
 }
