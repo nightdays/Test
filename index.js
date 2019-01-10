@@ -16,6 +16,10 @@ module.exports = {
             str += " 你发送的pageSize是" + d.pageSize;
         }
 
+        if(!d.pageSize && !d.pageNum) {
+            str = "抱歉，请传递参数";
+        }
+
         res.send(str);
     }
 }
