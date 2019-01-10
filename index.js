@@ -5,6 +5,17 @@ module.exports = {
     },
     test: function(req,res) {
         let d = req.data ;
-        res.send("你发送的pageNum是" + d.pageNum);
+
+        let str = "";
+
+        if(d.pageNum) {
+            str += "你发送的pageNum是" + d.pageNum;
+        }
+
+        if(d.pageSize) {
+            str += " 你发送的pageSize是" + d.pageSize;
+        }
+
+        res.send(str);
     }
 }
