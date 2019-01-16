@@ -1,7 +1,9 @@
 let fs = require('fs');
 let controllers = {};
 
-const fileList = fs.readdirSync('./controller');
+let path = require('path');
+
+const fileList = fs.readdirSync(path.resolve(__dirname , './controller'));
 
 for(let file of fileList) {
     let path = './controller/' + file;
