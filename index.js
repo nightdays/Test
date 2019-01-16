@@ -9,7 +9,7 @@ for(let file of fileList) {
     controllers = Object.assign( {} , controllers , ctrl);
 }
 
-export default controllers;
+module.exports = controllers;
 
 
 // let Test = require('./cTest');
