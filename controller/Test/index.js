@@ -25,7 +25,7 @@ module.exports = {
         let d = req.data;
         let result = {};
         if(d.id == 1) {
-            result = { code: 200 , data: { id: 1, name:'wumin' , prefer_id : 1} };
+            result = { code: 200 , data: { id: 1, name:'wumin' , prefer_id : 289} };
         }else {
             result =  { code : 200 , data: []};
         }
@@ -35,7 +35,7 @@ module.exports = {
     getPrefer : function(req,res) {
         let d = req.data;
         let result = {};
-        if(d.id == 1) {
+        if(d.id == 289) {
             result = { code: 200 , data: ['打游戏','化妆','美甲'] };
         } else {
             result = { code : 200 , data: []};
