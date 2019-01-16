@@ -1,4 +1,28 @@
-let controllerList = require('./controller');
+let fs = require('fs');
+let controllers = {};
+
+const fileList = fs.readdirSync('./controller');
+
+for(let file of fileList) {
+    let path = './controller/' + file;
+    let ctrl = require(path);
+    controllers = Object.assign( {} , controllers , ctrl);
+}
+
+export default controllers;
 
 
-module.exports = controllerList;
+// let Test = require('./cTest');
+
+// module.exports = {
+//     ...Test
+// }
+
+
+// function get(name) {
+
+// }
+
+
+
+// module.exports = controllerList;
