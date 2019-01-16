@@ -22,7 +22,7 @@ module.exports = {
         res.send(str);
     },
     getUser: function(req,res) {
-        let d = req.d;
+        let d = req.data;
         let result = {};
         if(d.id == 1) {
             result = { code: 200 , data: { id: 1, name:'wumin' , prefer_id : 1} };
@@ -33,7 +33,7 @@ module.exports = {
     },
 
     getPrefer : function(req,res) {
-        let d = req.d;
+        let d = req.data;
         let result = {};
         if(d.id == 1) {
             result = { code: 200 , data: ['打游戏','化妆','美甲'] };
