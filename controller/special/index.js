@@ -1,6 +1,35 @@
 let DB = require("../../util/DB");
 
+let permission1 = [
+  {
+    code : 'user',
+  },
+  {
+    code : 'department',
+  }
+]
+
+let permission2 = [
+  {
+    code : 'user',
+  },
+  {
+    code : 'system',
+  },
+]
+
 module.exports = {
+  "special/login" : function(req , res) {
+    let d = req.data;
+    if(d.username == 'admin' && d.password == '123') {
+      res.send( { code : 0 , data: permission1 } );
+    }else if(d.username == 'admin2' && d.password == '234') {
+      res.send({ code: 0 , data: permission2 })
+    }else{
+      res.send({ code : 200 , errmsg : '登录信息错误' });
+    }
+  },
+
   "special/helloWorld": function(req, res) {
     res.send("hello ddddddf");
   },
